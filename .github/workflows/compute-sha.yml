@@ -1,0 +1,12 @@
+name: Compute SHA512
+on:
+  push:
+    branches: [tmp-sha]
+jobs:
+  sha:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Check SHA512
+        run: |
+          echo "ARCHIVE_TAG_SHA512=$(curl -sL https://github.com/zhangglnuo-art/multichain-address-validator-cpp/archive/refs/tags/v1.0.0.tar.gz | sha512sum | awk '{print $1}')"
+          echo "RELEASE_ASSET_SHA512=$(curl -sL https://github.com/zhangglnuo-art/multichain-address-validator-cpp/releases/download/v1.0.0/multichain-address-validator-cpp-1.0.0.tar.gz | sha512sum | awk '{print $1}')"
